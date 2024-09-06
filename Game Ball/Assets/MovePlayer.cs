@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePlayer : MonoBehaviour
+public class movePlayer : MonoBehaviour
 {
-    public Rigidbody corpoPlayer;
-    public float speedPlayer;
 
+    private CharacterController controllerplayer;
+    private Animator anim;
+
+    public float speedPlayer; //Controla a velocidade do Player
+    private Vector3 inputsPlayer; //Receberá os valores dos teclados
+    private Vector3 jump; 
+    public float jumpPlayer; //Controla o pulo do Player
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        corpoPlayer = GetComponent<Rigidbody>();
+        controllerplayer = GetComponent<CharacterController>();
+        jump = new Vector3(0f, 2.0f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovPlayer();
-    }
-   
-    void MovPlayer()
-    {
-        speedPlayer = Input.GetAxis("Horizontal");
-        corpoPlayer.velocity = new Vector2(speedPlayer, corpoPlayer.velocity.y);
+        inputsPlayer.Set(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controllerplayer.Move(inputsPlayer * Time.deltaTime * speedPlayer);
+        controllerplayer.Move(Vector3.down * Time.deltaTime);
     }
 }
