@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class movePlayer : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class movePlayer : MonoBehaviour
     public float speedPlayer; //Controla a velocidade do Player
     public float jumpPlayer;
 
-    private int contadorItem;
-  
+    public int contadorItem;
+
+    public Text textPontos;
+    public Text textVitoria;
    
 
     // Start is called before the first frame update
@@ -19,7 +22,20 @@ public class movePlayer : MonoBehaviour
     {
         corpoPlayer = GetComponent<Rigidbody>();
         contadorItem = 0;
+        atualizaTextPontos();
+        textVitoria.text = "";
     }
+
+
+    private void Update()
+    {
+        
+        if(transform.position.y <= -7)
+        {
+            Application.LoadLevel("Jogo");
+        }
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -44,6 +60,18 @@ public class movePlayer : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             contadorItem++;
+            atualizaTextPontos();
         }
+    }
+
+    void atualizaTextPontos()
+    {
+        textPontos.text = "Pontos: " + contadorItem;
+
+        if(contadorItem >= 1)
+        {
+            textVitoria.text = "WIN YOU!";
+        }
+
     }
 }
