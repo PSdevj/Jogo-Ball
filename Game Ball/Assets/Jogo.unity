@@ -2534,8 +2534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce93b2400aaf24349902796670d01e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPlayer: 5
-  jumpPlayer: 4
+  speedPlayer: 6
+  jumpPlayer: 2
   contadorItem: 0
   textPontos: {fileID: 1361584465}
   textVitoria: {fileID: 673683778}
