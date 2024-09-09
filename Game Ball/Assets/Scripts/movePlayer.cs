@@ -69,7 +69,7 @@ public class movePlayer : MonoBehaviour
     {
         textPontos.text = "Pontos: " + contadorItem;
 
-        if(contadorItem >= 1)
+        if(contadorItem >= 5)
         {
             textVitoria.text = "WIN YOU!";
         }
