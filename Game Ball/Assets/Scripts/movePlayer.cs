@@ -15,6 +15,7 @@ public class movePlayer : MonoBehaviour
 
     public Text textPontos;
     public Text textVitoria;
+
    
 
     // Start is called before the first frame update
