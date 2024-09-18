@@ -86,6 +86,7 @@ public class movePlayer : MonoBehaviour
             collision.gameObject.SetActive(true);
             vidas--;
             modVidas();
+            Derrota();
         }
     }
 
@@ -100,6 +101,15 @@ public class movePlayer : MonoBehaviour
 
     }
 
+    void Derrota()
+    {
+        if (vidas <= 0)
+        {
+            textDerrota.text = "GAME OVER";
+        }
+    }
+
+
     void modVidas()
     {
         textVidas.text = "Vidas: " + vidas.ToString() + "x";
@@ -107,7 +117,7 @@ public class movePlayer : MonoBehaviour
 
     public void Inicializar()
     {
-        //transform.position = new Vector3(-5, -1.56f, transform.position.z);
+       
         textVidas.text = "Vidas " + vidas.ToString();
         transform.position = posInicial;
     }
