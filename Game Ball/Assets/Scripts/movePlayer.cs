@@ -10,13 +10,19 @@ public class movePlayer : MonoBehaviour
 
     public float speedPlayer; //Controla a velocidade do Player
     public float jumpPlayer;
-
+    private int vidas = 3;
     public int contadorItem;
 
     public Text textPontos;
     public Text textVitoria;
+    public Text textVidas;
+    public Text textDerrota;
 
-   
+
+    public Vector3 posInicial;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,15 +31,23 @@ public class movePlayer : MonoBehaviour
         contadorItem = 0;
         atualizaTextPontos();
         textVitoria.text = "";
+        textVidas.text = "Vidas: " + vidas.ToString() + "x";
+
+        posInicial = new Vector3(-3.63f, 0.21f, -74.368f);
+        transform.position = posInicial;
+
     }
 
 
     private void Update()
     {
-        
-        if(transform.position.y <= -7)
+
+        if (transform.position.y <= -7)
         {
-            Application.LoadLevel("Jogo");
+
+            Inicializar();
+            vidas--;
+            modVidas();
         }
     }
 
@@ -52,7 +66,7 @@ public class movePlayer : MonoBehaviour
         }
 
         corpoPlayer.AddForce(movimentoPlayer * speedPlayer);
-      
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -65,14 +79,36 @@ public class movePlayer : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("AstroDano"))
+        {
+            collision.gameObject.SetActive(true);
+            vidas--;
+            modVidas();
+        }
+    }
+
     void atualizaTextPontos()
     {
         textPontos.text = "Pontos: " + contadorItem;
 
-        if(contadorItem >= 5)
+        if (contadorItem >= 5)
         {
             textVitoria.text = "WIN YOU!";
         }
 
+    }
+
+    void modVidas()
+    {
+        textVidas.text = "Vidas: " + vidas.ToString() + "x";
+    }
+
+    public void Inicializar()
+    {
+        //transform.position = new Vector3(-5, -1.56f, transform.position.z);
+        textVidas.text = "Vidas " + vidas.ToString();
+        transform.position = posInicial;
     }
 }
