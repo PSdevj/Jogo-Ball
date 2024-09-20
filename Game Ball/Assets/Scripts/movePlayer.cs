@@ -33,7 +33,7 @@ public class movePlayer : MonoBehaviour
         textVitoria.text = "";
         textVidas.text = "Vidas: " + vidas.ToString() + "x";
 
-        posInicial = new Vector3(-3.63f, 0.21f, -74.368f);
+        posInicial = new Vector3(-3.63f, 5.439f, -14.268f);
         transform.position = posInicial;
 
     }
