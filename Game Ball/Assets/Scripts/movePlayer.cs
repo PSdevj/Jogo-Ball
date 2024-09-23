@@ -9,7 +9,6 @@ public class movePlayer : MonoBehaviour
     private Rigidbody corpoPlayer;
 
     public float speedPlayer; //Controla a velocidade do Player
-    public float jumpPlayer;
     private int vidas = 3;
     public int contadorItem;
 
@@ -18,9 +17,10 @@ public class movePlayer : MonoBehaviour
     public Text textVidas;
     public Text textDerrota;
 
-
+    private Vector3 movimentoPlayer;
     public Vector3 posInicial;
 
+    public ControleDoJogo genJ;
 
 
 
@@ -36,6 +36,8 @@ public class movePlayer : MonoBehaviour
         posInicial = new Vector3(-3.63f, 5.439f, -14.268f);
         transform.position = posInicial;
 
+        genJ = GameObject.FindGameObjectWithTag("GameController").GetComponent<ControleDoJogo>();
+
     }
 
 
@@ -48,6 +50,8 @@ public class movePlayer : MonoBehaviour
             Inicializar();
             vidas--;
             modVidas();
+            
+
         }
     }
 
@@ -58,12 +62,7 @@ public class movePlayer : MonoBehaviour
         float movimentoH = Input.GetAxis("Horizontal");
         float movimentoV = Input.GetAxis("Vertical");
 
-        Vector3 movimentoPlayer = new Vector3(movimentoH, 0, movimentoV);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            corpoPlayer.AddForce(new Vector3(0, jumpPlayer, 0), ForceMode.Impulse);
-        }
+        movimentoPlayer = new Vector3(movimentoH, 0, movimentoV);
 
         corpoPlayer.AddForce(movimentoPlayer * speedPlayer);
 
@@ -97,6 +96,7 @@ public class movePlayer : MonoBehaviour
         if (contadorItem >= 5)
         {
             textVitoria.text = "WIN YOU!";
+            genJ.JogadorVenceu();
         }
 
     }
@@ -106,6 +106,8 @@ public class movePlayer : MonoBehaviour
         if (vidas <= 0)
         {
             textDerrota.text = "GAME OVER";
+            genJ.PersonagemMorreu();
+         
         }
     }
 

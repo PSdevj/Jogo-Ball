@@ -3,17 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - "Ch\xE3o"
-  - PlayerEyes
-  - ItemColetalvel
-  - ItemColetavel
-  - AstroDano
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - chao
+  - 
   - Water
   - UI
   - 
